@@ -1,6 +1,7 @@
 package com.futurodev.joinville.m1s10_atividade.entities;
 
 
+import com.futurodev.joinville.m1s10_atividade.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +22,7 @@ public class User {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private String role;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 }
