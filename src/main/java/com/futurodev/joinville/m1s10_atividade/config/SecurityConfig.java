@@ -33,22 +33,14 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-        //                .requestMatchers("/auth").permitAll()
+                        .requestMatchers("/auth").permitAll()
+                        .requestMatchers("/users/**").hasAuthority(
+                                UserRole.ADMIN.name()
+                        )
                         .anyRequest().authenticated()
                 );
         return http.build();
     }
 
 
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        String password = encoder.encode("pass");
-        UserDetails userDetails = User.withUsername("user")
-                .password(password)
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(userDetails);
-    }
-
-}
+ }
