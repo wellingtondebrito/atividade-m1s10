@@ -37,6 +37,13 @@ public class SecurityConfig {
                         .requestMatchers("/users/**").hasAuthority(
                                 UserRole.ADMIN.name()
                         )
+                        .requestMatchers(HttpMethod.GET, "/organizations").hasAnyAuthority(
+                                UserRole.ADMIN.name(),
+                                UserRole.USER.name()
+                        )
+                        .requestMatchers("/organizations/**").hasAuthority(
+                                UserRole.ADMIN.name()
+                        )
                         .anyRequest().authenticated()
                 );
         return http.build();

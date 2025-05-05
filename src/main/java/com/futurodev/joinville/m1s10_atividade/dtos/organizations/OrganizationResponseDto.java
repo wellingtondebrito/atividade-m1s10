@@ -1,10 +1,12 @@
 package com.futurodev.joinville.m1s10_atividade.dtos.organizations;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrganizationResponseDto {

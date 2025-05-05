@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    public List<UserResponseDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return UserMapper.toDtoList(users);
+    }
+
     @Override
     public UserResponseDto createUser(UserRequestDto userDto) {
         User user = new User();
@@ -57,10 +62,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public List<UserResponseDto> getAllUsers() {
-       List<User> users = userRepository.findAll();
-        return UserMapper.toDtoList(users);
-    }
+
 
     @Override
     public UserResponseDto getUserById(Long id) {
